@@ -12,7 +12,7 @@ docker build -t ld-web/php-apache .
 
 ```bash
 # Map a directory to a /php folder created in the container
-docker run -d --name php-sf -v $(pwd)/php:/php ld-web/php-apache
+docker run -d --name php-apache -v $(pwd)/php:/php ld-web/php-apache
 ```
 
 ## Oh My Zsh
@@ -22,7 +22,7 @@ Oh My Zsh is installed into the container.
 It can be launched from CLI :
 
 ```bash
-docker exec -it php-sf zsh
+docker exec -it php-apache zsh
 ```
 
 If container was attached to VSCode, then from a terminal using default bash, run `zsh`
