@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 RUN apt-get update && apt-get install -y --no-install-recommends git wget zlib1g-dev libzip-dev unzip libicu-dev libonig-dev
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
   -t agnoster \
