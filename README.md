@@ -5,14 +5,13 @@ This Docker image aims to be instantiated when wanting to work locally on PHP & 
 ## Build
 
 ```bash
-docker build -t ld-web/php-apache .
+docker compose build .
 ```
 
 ## Run
 
 ```bash
-# Map a directory to a /php folder created in the container
-docker run -d --name php-sf -v $(pwd)/php:/php ld-web/php-apache
+docker compose up -d
 ```
 
 ## Oh My Zsh
