@@ -19,7 +19,7 @@ RUN docker-php-ext-install pdo_mysql \
   && docker-php-ext-install zip
 RUN apt-get install -y vim locate
 RUN pecl channel-update pecl.php.net \
-  && pecl install xdebug-3.2.0
+  && pecl install xdebug-3.2.2
 RUN updatedb
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 WORKDIR /var/www/html
