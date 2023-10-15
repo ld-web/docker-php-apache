@@ -54,7 +54,8 @@ Put the following content into a `.devcontainer.json` file located at the root o
         "esbenp.prettier-vscode",
         "helixquar.randomeverything",
         "bradlc.vscode-tailwindcss",
-        "narsenico.vscode-progressive-increment"
+        "narsenico.vscode-progressive-increment",
+        "MykhailoKushnir.vscode-php-getter-setter"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh",
