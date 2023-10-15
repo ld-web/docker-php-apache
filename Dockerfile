@@ -1,8 +1,21 @@
 FROM php:8.2-apache
+
+ARG USERNAME=dev
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
 RUN apt-get update && apt-get install -y --no-install-recommends git wget zlib1g-dev libzip-dev unzip libicu-dev libonig-dev
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
   -t agnoster \
   -p git
+RUN groupadd --gid $USER_GID $USERNAME \
+  && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME -s /usr/bin/zsh \
+  && apt-get update \
+  && apt-get install -y sudo \
+  && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+  && chmod 0440 /etc/sudoers.d/$USERNAME \
+  && cp -r /root/.oh-my-zsh /home/dev/
+COPY .zshrc /home/dev/.zshrc
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 RUN sed -i 's|memory_limit = 128M|memory_limit = 1024M|g' ${PHP_INI_DIR}/php.ini
 RUN sed -i 's|upload_max_filesize = 2M|upload_max_filesize = 8M|g' ${PHP_INI_DIR}/php.ini
@@ -24,3 +37,4 @@ RUN updatedb
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 WORKDIR /var/www/html
 EXPOSE 80
+USER $USERNAME
