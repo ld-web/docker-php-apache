@@ -33,7 +33,7 @@ Put the following content into a `.devcontainer.json` file located at the root o
 {
   "name": "PHP - Apache",
   "image": "ghcr.io/ld-web/php-apache:latest",
-  "postStartCommand": "service apache2 start",
+  "postStartCommand": "sudo service apache2 start",
   "mounts": [
     "source=${localWorkspaceFolder},target=/var/www/html,type=bind,consistency=cached"
   ],
